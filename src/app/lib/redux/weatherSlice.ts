@@ -34,15 +34,13 @@ export const fetchWeatherData = createAsyncThunk(
   "weather/fetchWeatherData",
   async (locality_id: string) => {
     const response = await fetch(
-      `https://www.weatherunion.com/gw/weather/external/v0/get_locality_weather_data?locality_id=${encodeURIComponent(
-        locality_id
-      )}`,
-      {
-        headers: {
-          "X-Zomato-Api-Key": process.env.NEXT_PUBLIC_ZOMATO_API_KEY as string,
-        },
-      }
+      `/api?locality_id=${encodeURIComponent(locality_id)}`
     );
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch weather data");
+    }
+
     const data = await response.json();
     return data;
   }
