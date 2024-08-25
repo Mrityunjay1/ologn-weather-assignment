@@ -39,7 +39,7 @@ export const fetchWeatherData = createAsyncThunk(
       )}`,
       {
         headers: {
-          "X-Zomato-Api-Key": "2bc392f76b6e66923be7b29ae030ead0",
+          "X-Zomato-Api-Key": process.env.NEXT_PUBLIC_ZOMATO_API_KEY as string,
         },
       }
     );
